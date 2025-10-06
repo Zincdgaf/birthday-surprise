@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Pretty!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffeaa7;
+            color: #2d3436;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: all 1s ease;
+        }
+
+        #cake-section {
+            text-align: center;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .cake {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            margin: 0 auto;
+            animation: bounce 2s infinite;
+        }
+
+        .plate {
+            width: 200px;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        .layers {
+            position: relative;
+            top: -10px;
+        }
+
+        .layer {
+            width: 180px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ff6b6b, #ee5a24);
+            margin: 5px auto;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .layer:nth-child(2) {
+            width: 160px;
+            background: linear-gradient(to bottom, #fdcb6e, #e17055);
+        }
+
+        .layer:nth-child(3) {
+            width: 140px;
+            background: linear-gradient(to bottom, #6c5ce7, #a29bfe);
+        }
+
+        .candles {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .candle {
+            width: 4px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 2px;
+        }
+
+        .flame {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 10px;
+            background-color: #ff4757;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 1s infinite alternate;
+        }
+
+        .flame:nth-child(2) { animation-delay: 0.2s; }
+        .flame:nth-child(4) { animation-delay: 0.4s; }
+        .flame:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes flicker {
+            0% { box-shadow: 0 0 5px #ff4757; }
+            100% { box-shadow: 0 0 20px #ff6b6b; transform: translateX(-50%) scale(1.1); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .message-section {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            max-width: 600px;
+            animation: slideIn 1s ease;
+        }
+
+        .message-section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #e17055;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        p {
+            font-size: 1.5em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        #personal-message {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pictures {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e17055;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .next-btn {
+            background-color: #00b894;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .next-btn:hover {
+            background-color: #00a085;
+        }
+
+        .auto-next {
+            opacity: 0.7;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cake-section">
+        <div class="cake">
+            <div class="plate"></div>
+            <div class="layers">
+                <div class="layer"></div>
+                <div class="layer"></div>
+                <div class="layer"></div>
+            </div>
+            <div class="candles">
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+            </div>
+        </div>
+        <h1> Happy Birthday Bebii! 🎂</h1>
+        <p>Click the cake or wait for the magic to begin...</p>
+        <button class="next-btn" onclick="nextSection('birthday')">Start Surprise!</button>
+        <p class="auto-next">Auto-advancing in 5 seconds...</p>
+    </div>
+
+    <div id="birthday-section" class="message-section">
+        <h1>Happy Birthday!</h1>
+        <p>Wishing you a day filled with love, laughter, and all your favorite things. You deserve the world! 🌟</p>
+        <button class="next-btn" onclick="nextSection('personal')">Continue to Personal Message</button>
+        <p class="auto-next">Auto-advancing in 5 seconds...</p>
+    </div>
+
+    <div id="personal-section" class="message-section">
+        <div id="personal-message">
+            <h1>My Special Message for You ❤️</h1>
+            <p>Dear PRETTY!,<br><br>
+            On your special day, I want you to know how much you mean to me. You've brought so much joy into my life, and I can't wait to create more amazing memories together. Happy Birthday, my love! Let's make this year unforgettable.<br><br>
+            With all my love,<br>Brylee</p>
+            <div class="pictures">
+                <img src="pic1.jpg" alt="Pretty" class="picture" onerror="this.src='https://via.placeholder.com/150?text=You'">
+                <img src="pic2.jpg" alt="Gorgeous" class="picture" onerror="this.src='https://via.placeholder.com/150?text=Her'">
+            </div>
+            <button class="next-btn" onclick="restart()">Replay Surprise</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 'cake';
+
+        function nextSection(target) {
+            document.getElementById(currentSection + '-section').classList.remove('active');
+            if (currentSection === 'cake') {
+                document.body.style.backgroundColor = '#fab1a0';
+            } else if (currentSection === 'birthday') {
+                document.body.style.backgroundColor = '#fd79a8';
+            }
+            currentSection = target;
+            document.getElementById(target + '-section').classList.add('active');
+            if (target !== 'personal') {
+                setTimeout(() => nextSection('personal'), 5000); 
+            }
+        }
+
+        setTimeout(() => {
+            if (currentSection === 'cake') {
+                nextSection('birthday');
+            }
+        }, 5000);
+
+        document.querySelector('.cake').addEventListener('click', () => {
+            nextSection('birthday');
+        });
+
+        function restart() {
+            location.reload();
+        }
+
+        document.getElementById('cake-section').classList.add('active');
+    </script>
+</body>
+</html>
